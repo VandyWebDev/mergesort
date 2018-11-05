@@ -9,23 +9,32 @@ function split(wholeArray) {
 
 function merge(arr) {
   let results = [];
+  let firstHalf = arr[0];
+  let secondHalf = arr[1];
+
   let leftPointer = 0; // 1 2
   let rightPointer = 0; // 0 1
 
-  // if leftPointer < arr[leftpointer]
-    whiile(leftPointer < arr[leftPointer].length && rightPointer < arr[rightPointer].length) {
-      if(arr[leftPointer] < arr[rightPointer]) {
-        results.push(arr[leftPointer])
-        leftPointer++;
-      } else {
-        results.push(arr[rightPointer]);
-        rightPointer++;
-      }
+  while (leftPointer < firstHalf.length && rightPointer < secondHalf.length) {
+    if (firstHalf[leftPointer] < secondHalf[rightPointer]) {
+      results.push(firstHalf[leftPointer]);
+      leftPointer++;
+    } else {
+      results.push(secondHalf[rightPointer]);
+      rightPointer++;
+
     }
-
-
-    return results;
   }
+  while (leftPointer < firstHalf.length) {
+    results.push(firstHalf[leftPointer]);
+    leftPointer++;
+  }
+  while (rightPointer < secondHalf.length) {
+    results.push(secondHalf[rightPointer]);
+    rightPointer++;
+  }
+  return results;
+}
 
 
 function mergeSort(array) {
