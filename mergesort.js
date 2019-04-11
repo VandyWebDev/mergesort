@@ -1,16 +1,13 @@
 function split(wholeArray) {
   /* your code here to define the firstHalf and secondHalf arrays */
-  const middle = wholeArray / 2;
+  const middle = Math.floor(wholeArray.length / 2);
   const firstHalf = wholeArray.slice(0, middle);
   const secondHalf = wholeArray.slice(middle);
-
-  return merge([firstHalf, secondHalf]);
+  return [firstHalf, secondHalf];
 }
 
-function merge(arr) {
+function merge(firstHalf, secondHalf) {
   let results = [];
-  let firstHalf = arr[0];
-  let secondHalf = arr[1];
 
   let leftPointer = 0; // 1 2
   let rightPointer = 0; // 0 1
@@ -22,7 +19,6 @@ function merge(arr) {
     } else {
       results.push(secondHalf[rightPointer]);
       rightPointer++;
-
     }
   }
   while (leftPointer < firstHalf.length) {
@@ -36,7 +32,12 @@ function merge(arr) {
   return results;
 }
 
-
 function mergeSort(array) {
   /* your code here */
+  if (array.length <= 1) return array;
+  let splits = split(array);
+  let firstHalf = mergeSort(splits[0]);
+  let secondHalf = mergeSort(splits[1]);
+  return merge(firstHalf, secondHalf);
 }
+console.log(mergeSort([2, 10, 0, 4, 8, -1, 3]));
